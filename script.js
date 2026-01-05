@@ -9,9 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
     
-    // Always start in dark mode
-    body.classList.add('dark-mode');
-    localStorage.setItem('theme', 'dark');
+    // Check for saved theme preference, default to dark mode
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.remove('dark-mode');
+    } else {
+        // Default to dark mode
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    }
     
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
