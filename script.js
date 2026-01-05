@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
             mobileMenuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         });
     }
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navMenu.classList.contains('active')) {
                 mobileMenuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
             }
         });
