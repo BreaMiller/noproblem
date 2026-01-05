@@ -1622,13 +1622,15 @@ body.dark-mode .footer {
         flex-direction: column;
         align-items: stretch;
         margin-bottom: 40px;
-        gap: 10px;
+        gap: 12px;
+    }
+    
+    .hero-buttons .btn {
+        padding: 12px 24px;
+        font-size: 14px;
     }
     
     .btn {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
         width: 100%;
         text-align: center;
         justify-content: center;
@@ -1773,7 +1775,6 @@ body.dark-mode .footer {
         flex-wrap: wrap;
         gap: 30px;
         justify-content: center;
-        text-align: center;
     }
     
     .why-choose-image {
@@ -1888,11 +1889,8 @@ body.dark-mode .footer {
     }
     
     .hero-stats {
-        gap: 15px;
-    }
-    
-    .stat-item {
-        padding: 12px 8px;
+        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
     }
     
     .stat-number {
