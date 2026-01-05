@@ -496,7 +496,7 @@ ul {
 }
 
 .section-title {
-    font-family: var(--font-display);
+    font-family: var(--font-primary);
     font-size: 48px;
     font-weight: 700;
     color: var(--text-dark);
@@ -1063,7 +1063,7 @@ ul {
 }
 
 .contact-info h2 {
-    font-family: var(--font-display);
+    font-family: var(--font-primary);
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 20px;
