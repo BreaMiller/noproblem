@@ -1035,7 +1035,13 @@ ul {
 /* === Contact Section === */
 .contact {
     padding: var(--section-padding);
-    background: var(--primary-green);
+    background-image: 
+        linear-gradient(rgba(124, 179, 66, 0.92), rgba(124, 179, 66, 0.92)),
+        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
 }
 
 .contact-wrapper {
@@ -1043,6 +1049,8 @@ ul {
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-info {
