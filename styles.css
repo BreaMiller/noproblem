@@ -656,6 +656,11 @@ ul {
 .services-showcase {
     padding: 100px 0;
     background-color: #f8f9fa;
+    background-image: 
+        linear-gradient(rgba(248, 249, 250, 0.95) 0%, transparent 10%, transparent 90%, rgba(248, 249, 250, 0.95) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124, 179, 66, 0.08) 19px, rgba(124, 179, 66, 0.08) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124, 179, 66, 0.08) 19px, rgba(124, 179, 66, 0.08) 20px);
+    position: relative;
 }
 
 .showcase-header {
