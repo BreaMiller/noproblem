@@ -9,11 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
     
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-    }
+    // Always start in dark mode
+    body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
     
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
