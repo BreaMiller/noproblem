@@ -106,13 +106,13 @@ body.dark-mode {
     --text-dark: #ffffff;
     --text-light: #cccccc;
     --text-white: #1a1a1a;
-    --bg-light: #1a1a1a;
-    --bg-white: #0d0d0d;
-    --bg-gray: #1a1a1a;
-    --border-color: #333333;
-    --nav-bg: rgba(13, 13, 13, 0.8);
-    --card-bg: #1a1a1a;
-    --hero-bg: #0d0d0d;
+    --bg-light: #2a2a2a;
+    --bg-white: #000000;
+    --bg-gray: #2a2a2a;
+    --border-color: #404040;
+    --nav-bg: rgba(0, 0, 0, 0.8);
+    --card-bg: #2a2a2a;
+    --hero-bg: #000000;
     --footer-bg: #f8f8f8;
 }
 
@@ -326,7 +326,7 @@ body.dark-mode .navbar.scrolled {
     cursor: pointer;
     transition: all var(--transition-speed) ease;
     padding: 0;
-    margin-left: 16px;
+    margin-left: 20px;
 }
 
 .theme-toggle:hover {
@@ -739,7 +739,7 @@ body.dark-mode .hero {
 
 body.dark-mode .services-showcase {
     background-image: 
-        linear-gradient(rgba(26, 26, 26, 0.95) 0%, transparent 10%, transparent 90%, rgba(26, 26, 26, 0.95) 100%),
+        linear-gradient(rgba(42, 42, 42, 0.95) 0%, transparent 10%, transparent 90%, rgba(42, 42, 42, 0.95) 100%),
         repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(124, 179, 66, 0.08) 39px, rgba(124, 179, 66, 0.08) 40px),
         repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124, 179, 66, 0.08) 39px, rgba(124, 179, 66, 0.08) 40px);
 }
