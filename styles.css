@@ -1339,6 +1339,10 @@ ul {
         gap: 40px;
     }
     
+    .hero-content {
+        text-align: center;
+    }
+    
     .hero-title {
         font-size: 42px;
     }
@@ -1399,6 +1403,10 @@ ul {
         font-size: 16px;
     }
     
+    .section-header {
+        text-align: center;
+    }
+    
     /* Services Showcase */
     .services-showcase {
         padding: 60px 0;
@@ -1406,8 +1414,9 @@ ul {
     
     .showcase-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         margin-bottom: 40px;
+        text-align: center;
     }
     
     .showcase-title {
@@ -1435,8 +1444,9 @@ ul {
     
     .showcase-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         margin-bottom: 40px;
+        text-align: center;
     }
     
     .showcase-title {
@@ -1466,6 +1476,10 @@ ul {
         grid-template-columns: 1fr;
         gap: 50px;
         padding: 50px 30px;
+    }
+    
+    .why-choose-content {
+        text-align: center;
     }
     
     .why-choose-title {
