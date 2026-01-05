@@ -785,6 +785,7 @@ ul {
     margin-right: auto;
     padding: 0 20px;
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .carousel-section .showcase-subtitle {
@@ -833,6 +834,64 @@ ul {
     flex-shrink: 0;
     width: 380px;
     height: 320px;
+}
+
+.carousel-section .service-card.carousel-card {
+    flex-shrink: 0;
+    width: 350px;
+    min-height: 280px;
+    background-color: var(--bg-white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+}
+
+.carousel-section .service-card.carousel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-green);
+}
+
+.carousel-section .service-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(124, 179, 66, 0.3);
+}
+
+.carousel-section .service-icon svg {
+    width: 35px;
+    height: 35px;
+    stroke: white;
+}
+
+.carousel-section .service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.carousel-section .service-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.carousel-section .showcase-subtitle {
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-top: 8px;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 /* === Services Section === */
@@ -1029,7 +1088,7 @@ ul {
 /* === Contact Section === */
 .contact {
     padding: var(--section-padding);
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, var(--primary-green) 0%, #558B2F 100%);
 }
 
 .contact-wrapper {
