@@ -972,12 +972,71 @@ body.dark-mode .services-showcase {
 .services {
     padding: var(--section-padding);
     background-color: var(--bg-white);
+    overflow: hidden;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+.services .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+.services-carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.services-carousel-wrapper::before,
+.services-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.services-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-white), transparent);
+}
+
+.services-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-white), transparent);
+}
+
+body.dark-mode .services-carousel-wrapper::before {
+    background: linear-gradient(to right, var(--dark-bg-primary), transparent);
+}
+
+body.dark-mode .services-carousel-wrapper::after {
+    background: linear-gradient(to left, var(--dark-bg-primary), transparent);
+}
+
+.services-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 30px;
+    animation: scroll 40s linear infinite;
+    width: fit-content;
+    padding-left: 20px;
+}
+
+.services-carousel:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50%));
+    }
 }
 
 .service-card {
@@ -987,6 +1046,8 @@ body.dark-mode .services-showcase {
     border: 1px solid var(--border-color);
     transition: all var(--transition-speed) ease;
     text-align: center;
+    min-width: 320px;
+    flex-shrink: 0;
 }
 
 .service-card:hover {
@@ -1018,6 +1079,29 @@ body.dark-mode .services-showcase {
     font-size: 15px;
     line-height: 1.7;
     color: var(--text-light);
+}
+
+/* Dark mode for services */
+body.dark-mode .services {
+    background-color: var(--dark-bg-primary);
+}
+
+body.dark-mode .service-card {
+    background-color: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+}
+
+body.dark-mode .service-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .service-card h3 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .service-card p {
+    color: var(--dark-text-secondary);
 }
 
 /* === Process Section === */
@@ -1657,11 +1741,7 @@ body.dark-mode .footer {
         padding: 12px 16px;
     }
     
-    /* Services */
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
+    /* Services - carousel remains horizontal on mobile */
     
     /* Process */
     .process-timeline::before {
