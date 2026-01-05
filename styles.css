@@ -1085,7 +1085,7 @@ ul {
 .contact-item {
     display: flex;
     gap: 20px;
-    align-items: start;
+    align-items: center;
 }
 
 .contact-item svg {
