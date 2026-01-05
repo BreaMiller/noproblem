@@ -322,7 +322,7 @@ body.dark-mode .navbar.scrolled {
     cursor: pointer;
     transition: all var(--transition-speed) ease;
     padding: 0;
-    margin-left: 16px;
+    margin-left: 0;
 }
 
 .theme-toggle:hover {
@@ -599,6 +599,10 @@ body.dark-mode .hero {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
+body.dark-mode .why-choose-wrapper {
+    background-color: #1a1a1a;
+}
+
 .why-choose-content {
     max-width: 600px;
 }
@@ -712,6 +716,11 @@ body.dark-mode .hero {
     font-size: 14px;
     font-weight: 500;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .why-image-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
 .why-image-badge svg {
