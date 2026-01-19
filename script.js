@@ -25,6 +25,15 @@ window.addEventListener('load', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // View Portfolio Coming Soon Popup
+    const portfolioBtn = document.getElementById('portfolioBtn');
+    if (portfolioBtn) {
+        portfolioBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Portfolio gallery coming soon! In the meantime, please contact us to see examples of our work.');
+        });
+    }
+    
     // Dark Mode Toggle
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
