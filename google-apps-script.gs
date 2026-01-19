@@ -22,8 +22,37 @@
 
 function doPost(e) {
   try {
+    // Log the entire event object for debugging
+    Logger.log('Event object: ' + JSON.stringify(e));
+    
+    // Check if e exists
+    if (!e) {
+      throw new Error('Event object is null or undefined');
+    }
+    
     // Parse the form data from the request
-    const data = JSON.parse(e.postData.contents);
+    let data;
+    
+    if (e.postData && e.postData.contents) {
+      // Standard POST data
+      data = JSON.parse(e.postData.contents);
+    } else if (e.parameter) {
+      // Sometimes data comes through as parameters
+      data = {
+        name: e.parameter.name || '',
+        email: e.parameter.email || '',
+        phone: e.parameter.phone || '',
+        serviceType: e.parameter.serviceType || '',
+        projectDetails: e.parameter.projectDetails || ''
+      };
+    } else if (e.contents) {
+      // Alternative format
+      data = JSON.parse(e.contents);
+    } else {
+      throw new Error('No data received in request');
+    }
+    
+    Logger.log('Parsed data: ' + JSON.stringify(data));
     
     // Get the active spreadsheet
     const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -65,8 +94,8 @@ function doPost(e) {
     const timestamp = new Date();
     
     // Get request metadata
-    const ipAddress = e.parameter.userip || 'N/A';
-    const userAgent = e.parameter.useragent || 'N/A';
+    const ipAddress = e.parameter ? (e.parameter.userip || 'N/A') : 'N/A';
+    const userAgent = e.parameter ? (e.parameter.useragent || 'N/A') : 'N/A';
     
     // Append the new row with form data
     sheet.appendRow([
@@ -79,6 +108,8 @@ function doPost(e) {
       ipAddress,
       userAgent
     ]);
+    
+    Logger.log('Row added successfully');
     
     // Optional: Send email notification to the business owner
     sendEmailNotification(data);
@@ -94,6 +125,7 @@ function doPost(e) {
   } catch (error) {
     // Log the error
     Logger.log('Error: ' + error.toString());
+    Logger.log('Error stack: ' + error.stack);
     
     // Return error response
     return ContentService
