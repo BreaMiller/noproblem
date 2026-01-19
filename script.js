@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('.contact-form form');
     
     // *** REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ***
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyc6kiIvhmmyP5Kms9YWafzN7cY2zoilIXW3WsBKGjBbTJmQiE_vDSW5yKNVAH7mWOX4A/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzn9_SU1dQQwD8VcJe48Q9dtZKT8WAH3j2HsLeTSSRT4M2Qosd01kfGmHTuDEZ6EvPIg/exec';
     
     if (contactForm) {
         console.log('Form found, attaching submit handler');
