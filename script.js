@@ -129,8 +129,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjwjOgou4XV2oGz0YmYom7HmMr6Q3NSIVjQJ39PrLaCFZmaJ4ForToqlj3-7Yo1CnwPA/exec';
     
     if (contactForm) {
+        console.log('Form found, attaching submit handler');
+        
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            console.log('Form submitted');
             
             // Get the submit button
             const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -153,6 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     projectDetails: formData.get('project-details')
                 };
                 
+                console.log('Sending data:', data);
+                console.log('To URL:', SCRIPT_URL);
+                
                 // Send to Google Apps Script
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
@@ -162,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(data)
                 });
+                
+                console.log('Request sent successfully');
                 
                 // With no-cors mode, we can't read the response
                 // But if no error is thrown, we assume success
@@ -174,13 +182,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             } catch (error) {
                 console.error('Form submission error:', error);
-                alert('❌ Sorry, there was an error submitting the form. Please try again or call us directly at (your-phone-number).');
+                alert('❌ Sorry, there was an error submitting the form. Please try again or call us directly.');
             } finally {
                 // Re-enable button
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
             }
         });
+    } else {
+        console.error('Contact form not found!');
     }
     
     // Intersection Observer for fade-in animations
