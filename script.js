@@ -3,11 +3,14 @@
 // Interactive functionality
 // ===================================
 
+console.log('Script loaded successfully');
+
 // Hide loading screen when page is fully loaded
 const loadingStartTime = Date.now();
 const minimumLoadingTime = 3500; // 3.5 seconds minimum
 
 window.addEventListener('load', function() {
+    console.log('Window loaded');
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
         const elapsedTime = Date.now() - loadingStartTime;
@@ -24,6 +27,7 @@ window.addEventListener('load', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
     
     // View Portfolio Coming Soon Popup
     const portfolioBtn = document.getElementById('portfolioBtn');
