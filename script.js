@@ -3,6 +3,26 @@
 // Interactive functionality
 // ===================================
 
+// Hide loading screen when page is fully loaded
+const loadingStartTime = Date.now();
+const minimumLoadingTime = 3500; // 3.5 seconds minimum
+
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        const elapsedTime = Date.now() - loadingStartTime;
+        const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
+        
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            // Remove from DOM after transition
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, remainingTime);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Dark Mode Toggle
@@ -93,38 +113,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Form submission handling (placeholder - connect to actual backend)
+    // Form submission handling with Google Apps Script
     const contactForm = document.querySelector('.contact-form form');
     
+    // *** REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ***
+    const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(contactForm);
+            // Get the submit button
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
             
-            // In a real implementation, you would send this data to a server
-            // For now, we'll just show a success message
-            alert('Thank you for your interest! We will contact you shortly to discuss your project.');
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
             
-            // Reset form
-            contactForm.reset();
-            
-            // Here you would typically send the data to your backend:
-            /*
-            fetch('/api/contact', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Thank you! We will be in touch soon.');
+            try {
+                // Get form data
+                const formData = new FormData(contactForm);
+                
+                // Convert FormData to JSON
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    serviceType: formData.get('service-type'),
+                    projectDetails: formData.get('project-details')
+                };
+                
+                // Send to Google Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // With no-cors mode, we can't read the response
+                // But if no error is thrown, we assume success
+                
+                // Show success message
+                alert('✅ Thank you for your interest! We will contact you shortly to discuss your project.');
+                
+                // Reset form
                 contactForm.reset();
-            })
-            .catch(error => {
-                alert('Sorry, there was an error. Please try again or call us directly.');
-            });
-            */
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('❌ Sorry, there was an error submitting the form. Please try again or call us directly at (your-phone-number).');
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
     
