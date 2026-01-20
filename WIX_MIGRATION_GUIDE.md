@@ -122,8 +122,8 @@ Create the following pages in Wix:
 2. Kitchen Remodeling
 3. Bathroom Renovations
 4. Commercial Remodeling
-5. Custom Millwork
-6. Structural Additions
+5. Outdoor Transformations
+6. Built-in Structures
 
 #### Section 4: Our Process
 **Wix Editor Steps:**
@@ -170,8 +170,8 @@ Create the following pages in Wix:
    - Heading: "Start Your Transformation" (42px, white)
    - Description text
    - Add icons + text for:
-     - Phone: (555) 123-4567
-     - Email: info@npservicesllc.com
+     - Phone: 678-791-6902
+     - Email: noproblem@npservices.info
      - Location: Alabama & Surrounding Regions
    
    **Right Column - Form:**

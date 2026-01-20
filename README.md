@@ -122,8 +122,8 @@ Original: *"We bridge the gap between architectural vision and structural realit
 2. Kitchen Remodeling
 3. Bathroom Renovations
 4. Commercial Remodeling
-5. Custom Millwork
-6. Structural Additions
+5. Outdoor Transformations
+6. Built-in Structures
 
 ### 5-Step Process:
 1. Comprehensive Consultation
@@ -156,8 +156,8 @@ If you prefer traditional hosting:
 ## 📞 Contact Information
 
 Update these placeholders in the code:
-- **Phone:** (555) 123-4567 → *Your actual phone*
-- **Email:** info@npservicesllc.com → *Your actual email*
+- **Phone:** 678-791-6902 → *Your actual phone*
+- **Email:** noproblem@npservices.info → *Your actual email*
 - **Location:** Alabama & Surrounding Regions → *Your service area*
 
 ### Files to Update:

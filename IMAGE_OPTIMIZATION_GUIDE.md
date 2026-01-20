@@ -53,7 +53,7 @@ When uploading each image to Wix, add descriptive alt text for SEO:
 - "Luxury bathroom renovation with custom tilework"
 - "Commercial office space renovation in Alabama"
 - "Complete home exterior transformation"
-- "Custom millwork and built-in cabinetry"
+- "Outdoor Transformations and built-in cabinetry"
 - "Master bathroom with spa-quality fixtures"
 - "Contemporary kitchen design with premium finishes"
 - "Residential addition and structural expansion"

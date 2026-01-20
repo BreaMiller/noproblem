@@ -86,7 +86,7 @@
 3. Enter business name: **NP Services LLC**
 4. Select category: **General Contractor** or **Remodeling Contractor**
 5. Add location (or select service area)
-6. Add phone: (555) 123-4567
+6. Add phone: 678-791-6902
 7. Add website: https://npservices.info
 8. Verify business (postcard, phone, or instant)
 9. Add photos of your work

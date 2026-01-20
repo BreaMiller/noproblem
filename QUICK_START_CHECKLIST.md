@@ -26,16 +26,16 @@
 ### Contact Information to Update:
 Current placeholders in `index.html`:
 ```
-Phone: (555) 123-4567 → UPDATE with real number
-Email: info@npservicesllc.com → CONFIRM or UPDATE
+Phone: 678-791-6902 → UPDATE with real number
+Email: noproblem@npservices.info → CONFIRM or UPDATE
 Location: Alabama & Surrounding Regions → CONFIRM or UPDATE
 ```
 
 ### Files to Edit:
 1. Open `index.html`
-2. Search for: `(555) 123-4567`
+2. Search for: `678-791-6902`
 3. Replace with your actual phone number
-4. Search for: `info@npservicesllc.com`
+4. Search for: `noproblem@npservices.info`
 5. Replace with your actual email
 6. Save changes
 
@@ -121,8 +121,8 @@ Location: Alabama & Surrounding Regions → CONFIRM or UPDATE
    - Kitchen Remodeling ✓
    - Bathroom Renovations ✓
    - Commercial Remodeling ✓
-   - Custom Millwork ✓
-   - Structural Additions ✓
+   - Outdoor Transformations ✓
+   - Built-in Structures ✓
 
 4. **Domain Name:** What domain will you use?
    - Suggestions: npservicesllc.com, npservices.com, npconstructionllc.com
