@@ -541,18 +541,39 @@ body.dark-mode .theme-toggle .moon-icon {
     display: flex;
     align-items: center;
     background-color: var(--hero-bg);
-    background-image: 
-        linear-gradient(rgba(26, 26, 26, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26, 26, 26, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: -1px -1px;
     padding: 140px 0 80px;
+    overflow: hidden;
 }
 
 body.dark-mode .hero {
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-color: #0a0a0a;
+}
+
+/* Interactive grid styles */
+.interactive-grid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-grid {
+    opacity: 0.08;
+}
+
+.highlight-grid {
+    opacity: 0.4;
 }
 
 .hero-wrapper {
@@ -560,6 +581,8 @@ body.dark-mode .hero {
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-content {
