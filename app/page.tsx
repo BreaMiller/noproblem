@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InfiniteGrid } from '@/components/ui/the-infinite-grid';
 import { LoadingScreen } from '@/components/ui/loading-screen';
 
@@ -9,6 +9,17 @@ export default function Home() {
   const [showLoading, setShowLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Apply theme to document on mount and when isDarkMode changes
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('light-mode'); document.body.classList.remove('light-mode');
+      document.documentElement.classList.add('dark-mode'); document.body.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode'); document.body.classList.remove('dark-mode');
+      document.documentElement.classList.add('light-mode'); document.body.classList.add('light-mode');
+    }
+  }, [isDarkMode]);
 
   const services = [
     {
@@ -127,8 +138,8 @@ export default function Home() {
                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                   </svg>
-                  <svg className="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M21 12.79A9 9 0 0 1 11.21 3a8 8 0 1 0 9.79 9.79z"></path>
+                  <svg className="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12.79A9 9 0 0 1 11.21 3 9 9 0 1 0 21 12.79z"></path>
                   </svg>
                 </button>
               </li>
@@ -169,11 +180,18 @@ export default function Home() {
                   We deliver premium residential and commercial remodeling and handyman services.
                 </p>
                 <div className="hero-buttons">
-                  <a href="#contact" className="btn btn-primary">Start Your Project</a>
+                  <a href="#contact" className="btn btn-primary">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M6 4h12v10H6z"></path>
+                      <path d="M9 14v6h6v-6"></path>
+                      <path d="M6 4L4 2M18 4l2-2"></path>
+                    </svg>
+                    Start Your Project
+                  </a>
                   <a href="#" onClick={(e) => {
                     e.preventDefault();
                     alert('Portfolio gallery coming soon! In the meantime, please contact us to see examples of our work.');
-                  }} className="btn btn-outline">
+                  }} className="btn btn-portfolio">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
                       <circle cx="11" cy="11" r="8"></circle>
                       <path d="m21 21-4.35-4.35"></path>
@@ -323,7 +341,7 @@ export default function Home() {
                     </svg>
                     <div>
                       <h4>Phone</h4>
-                      <p>678-791-6902</p>
+                      <p><a href="tel:678-791-6902" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>678-791-6902</a></p>
                     </div>
                   </div>
                   <div className="contact-item">
@@ -333,7 +351,7 @@ export default function Home() {
                     </svg>
                     <div>
                       <h4>Email</h4>
-                      <p>noproblem@npservices.info</p>
+                      <p><a href="mailto:noproblem@npservices.info" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>noproblem@npservices.info</a></p>
                     </div>
                   </div>
                   <div className="contact-item">
@@ -351,19 +369,49 @@ export default function Home() {
               <div className="contact-form">
                 <form onSubmit={(e) => {
                   e.preventDefault();
-                  alert('Thank you for your inquiry! We will contact you soon.');
+                  const formData = new FormData(e.currentTarget);
+                  const name = String(formData.get('name') || '');
+                  const email = String(formData.get('email') || '');
+                  const phone = String(formData.get('phone') || '');
+                  const serviceType = String(formData.get('serviceType') || '');
+                  const message = String(formData.get('message') || '');
+                  
+                  // Send to Google Apps Script
+                  const scriptUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // Replace with your script URL
+                  
+                  fetch(scriptUrl, {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                      formType: 'contact',
+                      name: name,
+                      email: email,
+                      phone: phone,
+                      serviceType: serviceType,
+                      message: message
+                    })
+                  })
+                  .then(r => r.json())
+                  .then(data => {
+                    alert(data.message);
+                    if (data.status === 'success') {
+                      e.currentTarget.reset();
+                    }
+                  })
+                  .catch(err => {
+                    alert('Error: ' + err.message);
+                  });
                 }}>
                   <div className="form-group">
-                    <input type="text" placeholder="Your Name" required />
+                    <input type="text" name="name" placeholder="Your Name" required />
                   </div>
                   <div className="form-group">
-                    <input type="email" placeholder="Your Email" required />
+                    <input type="email" name="email" placeholder="Your Email" required />
                   </div>
                   <div className="form-group">
-                    <input type="tel" placeholder="Phone Number" required />
+                    <input type="tel" name="phone" placeholder="Phone Number" required />
                   </div>
                   <div className="form-group">
-                    <select required>
+                    <select name="serviceType" required>
                       <option value="">Select Service Type</option>
                       <option value="Complete Home Transformation">Complete Home Transformation</option>
                       <option value="Kitchen Remodeling">Kitchen Remodeling</option>
@@ -374,9 +422,15 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <textarea placeholder="Tell us about your project" rows={4} required></textarea>
+                    <textarea name="message" placeholder="Tell us about your project" rows={4} required></textarea>
                   </div>
-                  <button type="submit" className="btn btn-primary btn-full">Request Consultation</button>
+                  <button type="submit" className="btn btn-primary btn-full">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    Request Consultation
+                  </button>
                 </form>
               </div>
             </div>
@@ -406,6 +460,45 @@ export default function Home() {
               <h4>Get In Touch</h4>
               <p><a href="mailto:noproblem@npservices.info">noproblem@npservices.info</a></p>
               <p><a href="tel:678-791-6902">678-791-6902</a></p>
+            </div>
+            <div className="footer-newsletter">
+              <h4>Newsletter</h4>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const emailInput = e.currentTarget.querySelector('input[type="email"]') as HTMLInputElement | null;
+                const email = emailInput?.value || '';
+                
+                if (!email) {
+                  alert('Please enter an email address');
+                  return;
+                }
+                
+                // Send to Google Apps Script
+                const scriptUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // Replace with your script URL
+                
+                fetch(scriptUrl, {
+                  method: 'POST',
+                  body: new URLSearchParams({
+                    formType: 'newsletter',
+                    email: email
+                  })
+                })
+                .then(r => r.json())
+                .then(data => {
+                  alert(data.message);
+                  if (data.status === 'success') {
+                    e.currentTarget.reset();
+                  }
+                })
+                .catch(err => {
+                  alert('Error: ' + err.message);
+                });
+              }}>
+                <div className="newsletter-form">
+                  <input type="email" placeholder="Enter your email" required />
+                  <button type="submit">Subscribe</button>
+                </div>
+              </form>
             </div>
           </div>
           <div className="footer-bottom">

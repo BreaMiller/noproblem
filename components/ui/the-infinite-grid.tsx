@@ -12,6 +12,28 @@ export function InfiniteGrid({ speed = 0.5, gap = 40 }: InfiniteGridProps) {
   const animationRef = useRef<number | null>(null);
   const offsetRef = useRef<number>(0);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  // Monitor theme changes
+  useEffect(() => {
+    const updateTheme = () => {
+      const htmlElement = document.documentElement;
+      const bodyElement = document.body;
+      const isLightMode = htmlElement.classList.contains('light-mode') || bodyElement.classList.contains('light-mode');
+      setIsDarkMode(!isLightMode);
+    };
+
+    updateTheme();
+
+    // Watch for theme class changes
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,8 +65,17 @@ export function InfiniteGrid({ speed = 0.5, gap = 40 }: InfiniteGridProps) {
 
       const offset = offsetRef.current;
 
-      // Draw grid lines
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      // Detect current theme
+      const htmlElement = document.documentElement;
+      const bodyElement = document.body;
+      const isLightMode = htmlElement.classList.contains('light-mode') || bodyElement.classList.contains('light-mode');
+
+      // Draw grid lines with theme-aware colors
+      if (isLightMode) {
+        ctx.strokeStyle = 'rgba(34, 194, 242, 0.35)';
+      } else {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      }
       ctx.lineWidth = 1;
 
       // Draw vertical lines
@@ -69,9 +100,16 @@ export function InfiniteGrid({ speed = 0.5, gap = 40 }: InfiniteGridProps) {
       const glowRadius = 150;
 
       const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, glowRadius);
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
-      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.02)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+      if (isLightMode) {
+        gradient.addColorStop(0, 'rgba(34, 194, 242, 0.08)');
+        gradient.addColorStop(0.5, 'rgba(34, 194, 242, 0.03)');
+        gradient.addColorStop(1, 'rgba(34, 194, 242, 0)');
+      } else {
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
+        gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.02)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      }
 
       ctx.fillStyle = gradient;
       ctx.fillRect(mouseX - glowRadius, mouseY - glowRadius, glowRadius * 2, glowRadius * 2);
@@ -98,7 +136,10 @@ export function InfiniteGrid({ speed = 0.5, gap = 40 }: InfiniteGridProps) {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 1, background: '#0d0d0d' }}
+      style={{ 
+        zIndex: 1, 
+        background: isDarkMode ? '#0d0d0d' : '#ffffff'
+      }}
     />
   );
 }
